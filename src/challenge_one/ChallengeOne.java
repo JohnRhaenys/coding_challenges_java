@@ -1,3 +1,5 @@
+package challenge_one;
+
 import java.util.Arrays;
 
 public class ChallengeOne
@@ -7,7 +9,6 @@ public class ChallengeOne
      * same size such that the ith element of the product array is equal
      * to the product of all the elements of the original array,
      * except for the ith element
-     *
      * TEST CASES:
      * array of positive numbers
      * array of negative numbers
@@ -42,6 +43,7 @@ public class ChallengeOne
 
     public static int[] first(int[] originalArray)
     {
+        // Calculate the product beforehand in order to optimize processing
         int product = getArrayProduct(originalArray);
 
         int[] newArray = new int[originalArray.length];
@@ -49,10 +51,13 @@ public class ChallengeOne
         {
             int item = originalArray[i];
             if (item == 0) {
+                // If the item is zero, we cannot divide by it. Thus,
+                // we set its value to the product of the array, ignoring the element itself
                 int ignoredIndexProduct = getArrayProduct(originalArray, i);
                 newArray[i] = ignoredIndexProduct;
             }
             else {
+                // Revert the multiplication operation for that specific item
                 newArray[i] = product / item;
             }
         }
