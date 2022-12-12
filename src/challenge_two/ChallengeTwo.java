@@ -1,5 +1,7 @@
 package challenge_two;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,12 +21,12 @@ public class ChallengeTwo
      * Test cases:
      * 2 1 1 and(not(A) , not(B))
      * 2 0 0 not(and(A , B))
-     * 3 0 0 0 or(and(A , B , C) , and(A , not(B) , C) , and(not(A) , not(B) , C) , and(not(A) , not(B) , not(C)))
+     * 3 0 0 0 or(and(A, B, C) , and(A, not(B), C), and(not(A) , not(B) , not(C)))
      * 3 0 0 0 or(or(and(not(and(A , B)) , not(C)) , and(not(A) , B , C) , and(A , B , C) , and(A , not(B) , not(C))) , and(A , not(B) , C))
      * 3 0 0 0 or(and(A , B , C) , and(A , not(B) , not(and(not(A) , not(C)))))
      */
     public static void main(String[] args) {
-        boolean result = challenge("3 0 0 0 or(or(and(not(and(A , B)) , not(C)) , and(not(A) , B , C) , and(A , B , C) , and(A , not(B) , not(C))) , and(A , not(B) , C))");
+        boolean result = challenge("2 0 0 not(and(A , B))");
     }
 
     private static boolean challenge(String expression) {
@@ -35,10 +37,18 @@ public class ChallengeTwo
     private static BooleanExpression mountBooleanExpression(String expression) {
         String finalExpression = getFinalExpression(expression);
 
-        int firstParenthesisIndex = finalExpression.indexOf('(');
-        BooleanOperator operator = BooleanOperator.valueOf(finalExpression.substring(0, firstParenthesisIndex));
-
-        // TODO - Build expression here
+        String[] subExpressions = finalExpression.split(",");
+        System.out.println(subExpressions[1]);
+        BooleanExpression booleanExpression = new BooleanExpression();
+//        while(finalExpression.length() > 1) {
+//            int firstParenthesisIndex = finalExpression.indexOf('(');
+//            BooleanOperator operator = BooleanOperator.valueOf(finalExpression.substring(0, firstParenthesisIndex));
+//            finalExpression = finalExpression.substring(firstParenthesisIndex + 1, finalExpression.length() - 1);
+//            System.out.println(operator);
+//            System.out.println(finalExpression);
+//            System.out.println("-=-=-=-=-=");
+//            System.out.println(Arrays.toString(finalExpression.split(",")));
+//        }
 
         return new BooleanExpression(null, null);
     }
